@@ -1,5 +1,6 @@
 "use client";
 
+import ReactDOM from "react-dom";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { PAGES } from "./pages";
 
@@ -17,6 +18,8 @@ type Phase =
 const CARD_OUT = new Set<Phase>(["emerging", "reading", "restack"]);
 
 export function FarewellEnvelope() {
+  ReactDOM.preload("/bg.webp", { as: "image" });
+
   const [phase, setPhase] = useState<Phase>("closed");
   const [page, setPage] = useState(0);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -84,7 +87,7 @@ export function FarewellEnvelope() {
       <div className="pointer-events-none absolute inset-0">
         <div
           className="absolute inset-0 bg-cover bg-[center_top_25%] bg-no-repeat"
-          style={{ backgroundImage: "url(/bg.png)" }}
+          style={{ backgroundImage: "url(/bg.webp)" }}
         />
         <div className="absolute inset-0 bg-[radial-gradient(60%_55%_at_50%_48%,oklch(0.99_0.012_92/0.55)_0%,oklch(0.97_0.014_88/0.3)_45%,transparent_75%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(105deg,transparent_0%,transparent_52%,oklch(0.72_0.03_70/0.1)_100%)]" />
