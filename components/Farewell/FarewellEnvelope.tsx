@@ -63,7 +63,7 @@ export function FarewellEnvelope() {
   const cardTransform = cardOut
     ? phase === "emerging"
       ? "translateZ(90px) translateY(calc(var(--env-h) * -0.42)) scale(0.74)"
-      : "translateZ(90px) translateY(calc(var(--card-h) * -0.44)) scale(1)"
+      : "translateZ(90px) translateY(calc(var(--card-h) * -0.28)) scale(1)"
     : "translateZ(2px) translateY(calc(var(--env-h) * 0.05)) scale(0.46)";
 
 
@@ -74,28 +74,51 @@ export function FarewellEnvelope() {
         {
           "--env-w": "min(560px, 88vw)",
           "--env-h": "calc(var(--env-w) * 0.64)",
-          "--card-w": "min(390px, 76vw, 40vh)",
-          "--card-h": "calc(var(--card-w) * 1.34)",
+          "--card-h": "min(720px, 76vh, 122vw)",
+          "--card-w": "calc(var(--card-h) / 1.34)",
           perspective: "1500px",
         } as React.CSSProperties
       }
     >
       {/* Editorial stationery surface */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_18%_8%,oklch(0.99_0.012_92)_0%,oklch(0.955_0.015_86)_46%,oklch(0.9_0.021_80)_100%)]" />
-        <div className="absolute -left-[18%] top-[-12%] h-[70vh] w-[70vh] rotate-[8deg] rounded-[2px] bg-paper/50 blur-[2px]" />
-        <div className="absolute -right-[14%] bottom-[-18%] h-[62vh] w-[52vh] -rotate-[6deg] rounded-[2px] bg-envelope-shade/40 blur-[3px]" />
-        <div className="absolute inset-0 bg-[linear-gradient(105deg,transparent_0%,transparent_52%,oklch(0.72_0.03_70/0.14)_100%)]" />
+        <div
+          className="absolute inset-0 bg-cover bg-[center_top_25%] bg-no-repeat"
+          style={{ backgroundImage: "url(/bg.png)" }}
+        />
+        <div className="absolute inset-0 bg-[radial-gradient(60%_55%_at_50%_48%,oklch(0.99_0.012_92/0.55)_0%,oklch(0.97_0.014_88/0.3)_45%,transparent_75%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(105deg,transparent_0%,transparent_52%,oklch(0.72_0.03_70/0.1)_100%)]" />
         <div className="absolute inset-0 grain-soft" />
+
+        {/* Drifting motes for a bit of ambient life */}
+        <span className="animate-drift-a absolute left-[22%] top-[28%] h-2 w-2 rounded-full bg-accent/25 blur-[1px]" />
+        <span className="animate-drift-b absolute left-[68%] top-[62%] h-3 w-3 rounded-full bg-paper-edge/40 blur-[2px]" />
+        <span className="animate-drift-c absolute left-[80%] top-[22%] h-1.5 w-1.5 rounded-full bg-accent/20 blur-[1px]" />
+        <span className="animate-drift-b absolute left-[12%] top-[70%] h-2 w-2 rounded-full bg-paper-edge/30 blur-[1px]" style={{ animationDuration: "16s" }} />
+      </div>
+
+      {/* Header */}
+      <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-4 px-6 py-6 sm:px-10 sm:py-8">
+        <span className="animate-fade-in-up max-w-[45%] text-left text-[0.5rem] uppercase leading-relaxed tracking-[0.22em] text-foreground/70 sm:max-w-none sm:text-[0.6rem] sm:tracking-[0.35em]">
+          It&apos;s honored to have worked with you
+        </span>
+        <span
+          className="animate-fade-in-up max-w-[45%] text-right text-[0.5rem] uppercase leading-relaxed tracking-[0.22em] text-foreground/70 sm:max-w-none sm:text-[0.6rem] sm:tracking-[0.35em]"
+          style={{ animationDelay: "150ms" }}
+        >
+          Project Manager, Saad Ahmed
+        </span>
       </div>
 
       {/* Stage + below-card actions, kept together so nothing overlaps the card */}
       <div className="relative flex flex-col items-center gap-9">
       <div
-        className="relative transition-transform duration-[1100ms]"
+        className={`relative transition-transform duration-[1100ms] ${
+          phase === "closed" ? "animate-envelope-float" : ""
+        }`}
         style={{
           transformStyle: "preserve-3d",
-          transform: stageShift ? "translateY(15vh)" : "translateY(0)",
+          transform: stageShift ? "translateY(18vh)" : "translateY(0)",
           transitionTimingFunction: "var(--ease-paper)",
         }}
       >
@@ -185,7 +208,7 @@ export function FarewellEnvelope() {
         className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 text-[0.6rem] tracking-[0.4em] text-muted-foreground transition-opacity duration-500"
         style={{ opacity: phase === "reading" ? 1 : 0 }}
       >
-        {String(page + 1).padStart(2, "0")} / 07
+        {String(page + 1).padStart(2, "0")} / {String(PAGES.length).padStart(2, "0")}
       </span>
     </main>
   );
@@ -342,7 +365,9 @@ function EnvelopeFace({
 
       {/* Click to open */}
       <span
-        className="pointer-events-none absolute -bottom-14 left-0 right-0 text-center text-[0.6rem] uppercase tracking-[0.45em] text-muted-foreground transition-opacity duration-700"
+        className={`pointer-events-none absolute -bottom-14 left-0 right-0 text-center text-[0.6rem] uppercase tracking-[0.45em] text-muted-foreground transition-opacity duration-700 ${
+          phase === "closed" ? "animate-pulse-soft" : ""
+        }`}
         style={{ opacity: phase === "closed" ? 1 : 0 }}
       >
         Click to open
