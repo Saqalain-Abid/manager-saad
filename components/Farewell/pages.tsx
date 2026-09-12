@@ -26,16 +26,16 @@ const BOOK_IMAGES = [
       "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAABQAgCdASoMABAAA4BaJbACsAYuRlajxI2Z+gAA/vPO58/Lo7zKTBGJ3a6tjuz9dFCEr3L/erdOwincexzLso2ca41jAMB5SCzlDBC03/eMHgrJqxqT7pmpWDIsvaGrAAA=",
   },
   {
-    src: "/saad-book/7.webp",
-    alt: "From Manager, Hira",
-    blurDataURL:
-      "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAAAQAgCdASoMABAAA4BaJbACsAED+YjGM5BAAP7yPi8/Mzj+1F4EDA2bN7cZUTfndv3Jk0P1ECtZrnyzTIjrRiIbTtkBNlBvBbZrbNCqBqPj66fAQCmrlkPBpLIhgAAA",
-  },
-  {
     src: "/saad-book/5.webp",
     alt: "From Senior Designer, Wafa Manan",
     blurDataURL:
       "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAABQAgCdASoMABAAA4BaJZgC7AYu5lb4E5G59QAA/vOvFUx+wd1ZzKermfKfsUqIY8Qj4FFoyc8spzooA8zMnuQRS1P1G2e7zfBFVqiAhcmOqZoVYsfHaiQtdF2qYJNYCIoAAA==",
+  },
+  {
+    src: "/saad-book/7.webp",
+    alt: "From Manager, Hira",
+    blurDataURL:
+      "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAAAQAgCdASoMABAAA4BaJbACsAED+YjGM5BAAP7yPi8/Mzj+1F4EDA2bN7cZUTfndv3Jk0P1ECtZrnyzTIjrRiIbTtkBNlBvBbZrbNCqBqPj66fAQCmrlkPBpLIhgAAA",
   },
   {
     src: "/saad-book/9.webp",
